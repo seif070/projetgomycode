@@ -1,81 +1,94 @@
-const userSchema = require('../model/user')
+const UserSchema = require('../model/user');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
+exports.registerauth = async (req, res) => {
+  try {
+    const { name, lastname, email, password, phone, address } = req.body;
 
-exports.registerauth=async(req,res)=>{
-    try{
-  
-      const {name,lastname,email,password} = req.body 
-  
-  
-  // talwij mte3 el user  email deja mwjoud 
-  
-  
-  const founduser = await userSchema.findOne({email})
-if(founduser){return res.status(404).json({msg:'vous avez deja un compte voir le login'})}
-    
+    if (!name || !lastname || !email || !password || !phone || !address) {
+      return res.status(400).json({ msg: 'Veuillez fournir toutes les informations nécessaires.' });
+    }
 
-const newuser = await new userSchema(req.body)
+    const foundUser = await UserSchema.findOne({ email });
+    if (foundUser) {
+      return res.status(409).json({ msg: 'Vous avez déjà un compte. Veuillez vous connecter.' });
+    }
+
+    const newUser = new UserSchema({ name, lastname, email, password, phone, address });
+
+    const saltRounds = 10;
+    const hash = bcrypt.hashSync(password, saltRounds);
+    newUser.password = hash;
+
+    await newUser.save();
+
+    res.status(201).json({ msg: 'Bienvenue sur la plateforme !', newUser });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: 'Une erreur s\'est produite lors de l\'inscription.' });
+  }
+};
+
+exports.loginuser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ msg: 'Veuillez fournir une adresse e-mail et un mot de passe.' });
+    }
+
+    const foundUser = await UserSchema.findOne({ email });
+    if (!foundUser) {
+      return res.status(404).json({ msg: 'Aucun compte trouvé. Veuillez vous inscrire.' });
+    }
+
+    const match = await bcrypt.compare(password, foundUser.password);
+    if (!match) {
+      return res.status(401).json({ msg: 'Mot de passe incorrect.' });
+    }
+
+    const payload = { id: foundUser._id };
+    const token = jwt.sign(payload, process.env.privateKey);
+
+    res.cookie('token', token, { httpOnly: true, secure: true });
+
+    res.status(200).json({ msg: 'Bienvenue !', foundUser });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: 'Une erreur s\'est produite lors de la connexion.' });
+  }
+};
+
+exports.updateuser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const { password, ...updateData } = req.body;
+
+    if (password) {
       const saltRounds = 10;
-      const salt = bcrypt.genSaltSync(saltRounds);
-      const hash = bcrypt.hashSync(password, salt);
-  
-      newuser.password = hash
-      newuser.save()
-   
-      res.status(200).json({msg:'you did a good job welcome to the platform',newuser})
-   
-  
-  }catch(err){
-      console.log(err)
-      res.status(400).jsonc({msg:'there is something wrong'})
+      updateData.password = bcrypt.hashSync(password, saltRounds);
     }
+
+    const updatedUser = await UserSchema.findByIdAndUpdate(id, { $set: { ...updateData } });
+
+    if (!updatedUser) {
+      return res.status(404).json({ msg: 'Utilisateur non trouvé.' });
+    }
+
+    res.status(200).json({ msg: 'Profil utilisateur mis à jour.' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: 'Une erreur s\'est produite lors de la mise à jour du profil utilisateur.' });
   }
+};
 
-
-
-
-
-
-
-  exports.loginuser=async(req,res)=>{
-    try{
-
-
-      const {email,password} = req.body 
-      const founduser = await userSchema.findOne({email})
-      if(!founduser){return res.status(404).json({msg:'pas de compte voir le register'})}
-          
-      const match = await bcrypt.compare(password, founduser.password)
-      if(!match){return res.status(404).json({msg:'error partie mdp'})}
-      // creation mt3 el token 
-      
-      const payload = { id : founduser._id}
-      var token = jwt.sign(payload,process.env.privateKey )
-      
-      res.status(200).send({msg:'ur welcome',token , founduser})
-      
-    }catch(err){
-      console.log(err)
-    }
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await UserSchema.find();
+    res.json(users);
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
-
-  exports.updateuser=exports.updateUser = async (req, res) => {
-    const { id } = req.params;
-    try {
-      if (req.body.password) {
-        req.body.password = bcrypt.hashSync(req.body.password, 10);
-      }
-      const updatedUser = await UserSchema.findByIdAndUpdate(id, {
-        $set: { ...req.body },
-      });
-      if (!updatedUser) {
-        return res.status(400).json({ msg: "User not exist" });
-      }
-      return res.status(200).send({ msg: "User updated" });
-    } catch (error) {
-      console.log(err)
-      return res.status(500).send({ err: error });
-    }
-  };
+};

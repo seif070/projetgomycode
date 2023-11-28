@@ -8,12 +8,25 @@ const Login = () => {
   let navigate = useNavigate()
 
   // partie login 
-  const submitLogin=async(values)=>{
-    const res = await axios.post('http://localhost:5002/auth/loginuser',values)
-    await console.log('reponse login', res.data.token)
-  await localStorage.setItem('token',res.data.token)
-  navigate('/home')
+const submitLogin = async (values) => {
+  try {
+    const res = await axios.post('http://localhost:5002/auth/loginuser', values);
+    console.log('Réponse du login :', res.data.token);
+    localStorage.setItem('token', res.data.token);
+    navigate('/home');
+  } catch (error) {
+    console.error('Erreur lors de la demande :', error.message);
+    if (error.response) {
+      console.error('Réponse du serveur avec erreur :', error.response.data);
+      console.error('Statut de la réponse :', error.response.status);
+    } else if (error.request) {
+      console.error('Aucune réponse reçue du serveur');
+    } else {
+      console.error('Erreur lors de la configuration de la requête :', error.message);
+    }
   }
+};
+
   return (
     <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}><form className="form_main" action="">
     <p className="heading">Login</p>
@@ -69,6 +82,7 @@ const Login = () => {
       <a href="/">Register</a>
     </div>
   </form>
+
   </div>
   )
 }

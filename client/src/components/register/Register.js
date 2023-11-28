@@ -10,13 +10,30 @@ let navigate = useNavigate()
   const [lastname,setLastname]=useState('')
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
+  const [phone,setPhone]=useState('')
+  const[address,setAddress]=useState('')
+
 
 // function api register user 
-const handelregister=async(value)=>{
-  await registerUser(value)
-navigate('/login')
-
-}
+const handelregister = async (value) => {
+  try {
+    await registerUser(value);
+    navigate('/login');
+  } catch (error) {
+    console.error('Erreur lors de la demande :', error.message);
+    if (error.response) {
+      
+  
+console.error('Réponse du serveur avec erreur :', error.response.data);
+      console.error('Statut de la réponse :', error.response.status);
+    } else if (error.request) {
+      console.error('Aucune réponse reçue du serveur');
+    } else {
+      
+console.error('Erreur lors de la configuration de la requête :', error.message);
+    }
+  }
+};
 
   return (
     <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}><form className="form_main" action="">
@@ -117,8 +134,24 @@ navigate('/login')
         value={password}
         onChange={(e)=>setPassword(e.target.value)}
       />
+       <input
+        placeholder="phone"
+        id="phone"
+        className="inputField"
+        type="text"
+        value={phone}
+        onChange={(e)=>setPhone(e.target.value)}
+      />
+       <input
+        placeholder="adresse"
+        id="adresse"
+        className="inputField"
+        type="text"
+        value={address}
+        onChange={(e)=>setAddress(e.target.value)}
+      />
     </div>
-    <button id="button"  type="button"   onClick={()=>handelregister({name,lastname,email,password})} > Submit</button>
+    <button id="button"  type="button"   onClick={()=>handelregister({name,lastname,email,password,phone,address})} > Submit</button>
 
 
 
