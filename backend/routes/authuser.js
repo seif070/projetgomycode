@@ -1,29 +1,19 @@
-const express = require('express')
+// userRoutes.js
 
-
-const {registerauth,loginuser,updateuser}=require('../controllers/usercontroller')
-const authRouter = express.Router()
-
-const {registerValidation,Logvalidation,validation}=require('../middelwares/RegisterValidator')
-const {isAuth}=require('../middelwares/isAuth')
-
+const express = require('express');
+const authRouter = express.Router();
+const { registerauth, loginuser, updateuser } = require('../controllers/usercontroller');
+const { registerValidation, Logvalidation, validation } = require('../middelwares/RegisterValidator');
+const { isAuth } = require('../middelwares/isAuth');
 
 // partie authentification
+authRouter.post('/register', registerValidation, validation, registerauth);
 
-authRouter.post('/register',registerValidation,validation,registerauth)
 
+authRouter.post('/login', Logvalidation, validation, loginuser);
 
-authRouter.post('/loginuser',Logvalidation,validation,loginuser)
-
+// ... other routes ...
 authRouter.get('/account',isAuth,async(req,res)=>{
     res.send(req.user)
 })
-
-
-// partie update profil user 
-
- authRouter.put('/updateprofil/:id',isAuth,updateuser)
-
-
-
-module.exports = authRouter
+module.exports = authRouter;

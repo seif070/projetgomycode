@@ -6,9 +6,6 @@ exports.registerauth = async (req, res) => {
   try {
     const { name, lastname, email, password, phone, address } = req.body;
 
-    if (!name || !lastname || !email || !password || !phone || !address) {
-      return res.status(400).json({ msg: 'Veuillez fournir toutes les informations nécessaires.' });
-    }
 
     const foundUser = await UserSchema.findOne({ email });
     if (foundUser) {
@@ -34,9 +31,7 @@ exports.loginuser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    if (!email || !password) {
-      return res.status(400).json({ msg: 'Veuillez fournir une adresse e-mail et un mot de passe.' });
-    }
+  
 
     const foundUser = await UserSchema.findOne({ email });
     if (!foundUser) {
@@ -51,9 +46,7 @@ exports.loginuser = async (req, res) => {
     const payload = { id: foundUser._id };
     const token = jwt.sign(payload, process.env.privateKey);
 
-    res.cookie('token', token, { httpOnly: true, secure: true });
-
-    res.status(200).json({ msg: 'Bienvenue !', foundUser });
+    res.status(200).json({ msg: 'Bienvenue !', foundUser,token });
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: 'Une erreur s\'est produite lors de la connexion.' });

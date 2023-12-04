@@ -14,9 +14,8 @@ exports.isAuth=async(req,res,next)=>{
 
      const user = await userSchema.findById(decoder.id)
      req.user = user
-     
-        next()
+     next()
     }catch(err){
-
+console.log(err)
     }
 }

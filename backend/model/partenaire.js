@@ -32,7 +32,6 @@ const partenaireSchema = new mongoose.Schema({
     },
     openingHours: {
         type: String,
-        required: true
     },
     website: {
         type: String
@@ -47,6 +46,11 @@ const partenaireSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    NumberCenters:{
+        type:Number,
+
+    },
+
     reviews: [{
         user: {
             type: mongoose.Schema.Types.ObjectId,

@@ -10,7 +10,7 @@ const Login = () => {
   // partie login 
 const submitLogin = async (values) => {
   try {
-    const res = await axios.post('http://localhost:5002/auth/loginuser', values);
+    const res = await axios.post('http://localhost:5002/auth/login', values);
     console.log('Réponse du login :', res.data.token);
     localStorage.setItem('token', res.data.token);
     navigate('/home');

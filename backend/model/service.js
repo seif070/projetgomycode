@@ -1,27 +1,27 @@
 const mongoose = require('mongoose');
 
 const serviceSchema = new mongoose.Schema({
-    name: {
+    nameService: {
         type: String,
         required: true
     },
-    description: {
+    descriptionService: {
         type: String,
         required: true
     },
-    price: {
+    priceService: {
         type: Number,
         required: true
     },
-    duration: {
+    durationService: {
         type: Number,
         required: true
     },
-    category: {
+    categoryService: {
         type: String,
         required: true
     },
-    partner: {
+    partnerService: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Partenaire',
         required: true

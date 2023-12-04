@@ -4,6 +4,7 @@ const connectDB = require('./config/db');
 const productRoutes = require('./routes/productRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const userRoutes = require('./routes/userRoutes');
+const authRouter = require('./routes/authuser');
 require('dotenv').config();
 
 const app = express();
@@ -28,6 +29,7 @@ app.use((req, res, next) => {
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
 app.use('/users', userRoutes); 
+app.use('/auth', authRouter); 
 
 // Middleware pour capturer les erreurs non traitées
 app.use((err, req, res, next) => {

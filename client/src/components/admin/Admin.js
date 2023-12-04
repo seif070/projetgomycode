@@ -1,9 +1,15 @@
-import React from 'react'
 
-const Admin = () => {
+import React from 'react';
+import './Admin.css'; 
+
+const Admin = ({ auth }) => {
   return (
-    <div>hello this is the admin account </div>
-  )
-}
+    <div className="adminContainer">
+      <h2 className="adminHeading">Admin Dashboard</h2>
+      <p className="adminInfo">Name: {auth.name}</p>
+      <p className="adminInfo">Email: {auth.email}</p>
+    </div>
+  );
+};
 
-export default Admin
+export default Admin;
