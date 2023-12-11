@@ -7,6 +7,7 @@ import './App.css';
 import HomePage from './components/homepage/HomePage';
 import User from './components/user/User';
 import Admin from './components/admin/Admin';
+import TableUser from './components/admin/TableUser/TableUser';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route path='/home' element={<HomePage />} />
         <Route path='/admin' element={<Admin />} />
         <Route path='/user' element={<User />} />
-      </Routes>
+        <Route path="/tableau_user" element={<TableUser/>}/>      </Routes>
     </div>
   );
 }

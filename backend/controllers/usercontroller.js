@@ -4,22 +4,17 @@ const jwt = require('jsonwebtoken');
 
 exports.registerauth = async (req, res) => {
   try {
-    const { name, lastname, email, password, phone, address } = req.body;
-
+    const { name, lastname, email, password, phone, address,role } = req.body;
 
     const foundUser = await UserSchema.findOne({ email });
     if (foundUser) {
       return res.status(409).json({ msg: 'Vous avez déjà un compte. Veuillez vous connecter.' });
     }
-
-    const newUser = new UserSchema({ name, lastname, email, password, phone, address });
-
+    const newUser = new UserSchema({ name, lastname, email, password, phone, address,role });
     const saltRounds = 10;
     const hash = bcrypt.hashSync(password, saltRounds);
     newUser.password = hash;
-
     await newUser.save();
-
     res.status(201).json({ msg: 'Bienvenue sur la plateforme !', newUser });
   } catch (err) {
     console.error(err);

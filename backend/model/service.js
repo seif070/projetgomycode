@@ -20,12 +20,8 @@ const serviceSchema = new mongoose.Schema({
     categoryService: {
         type: String,
         required: true
-    },
-    partnerService: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Partenaire',
-        required: true
-    },
+    }
+  
 });
 
 module.exports = mongoose.model('Service', serviceSchema);
