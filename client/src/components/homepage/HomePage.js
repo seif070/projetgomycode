@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchaccount } from '../../api/authapi';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAccount } from '../../store/accountSlice';
 import { useNavigate } from 'react-router';
-import Admin from '../admin/Admin';
 import User from '../user/User';
 import Login from '../login/Login';
 import Navbar from '../navbar/Navbar';
+import Admin from '../Admin/AdminUser';
+import './HomePage.css';
 
 const HomePage = () => {
   const [loading, setLoading] = useState(true);
@@ -44,11 +46,43 @@ const HomePage = () => {
       ) : token ? (
         <>
           <Navbar auth={auth} logout={logout} />
-          {auth.role === 'admin' ? <Admin auth={auth}    /> : <User   auth={auth} />}
+          {auth.role === 'admin' ? <Admin auth={auth} /> : <User auth={auth} />}
         </>
       ) : (
         <Login />
       )}
+
+      <section>
+        <h2>Lavage Auto à la Vapeur</h2>
+        <p>
+          Offrez à votre voiture le traitement qu'elle mérite avec notre service de lavage auto à la vapeur.
+          Respectueux de l'environnement, efficace et sans produits chimiques agressifs.
+        </p>
+      </section>
+      <section>
+        <h2>Comment Ça Marche</h2>
+        <p>
+          Notre équipe qualifiée utilise la puissance de la vapeur pour nettoyer votre voiture de manière
+          approfondie, en éliminant la saleté, les taches et les bactéries.
+        </p>
+      </section>
+      <section>
+        <h2>Avantages du Lavage à la Vapeur</h2>
+        <ul>
+          <li>Écologique</li>
+          <li>Économique en eau</li>
+          <li>Nettoyage en profondeur</li>
+          <li>Protection de la peinture</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Réservez un Lavage</h2>
+        <p>
+          Prêt à donner à votre voiture un nouveau look?{' '}
+          <Link to='/reservation'>Réservez maintenant</Link> et profitez de notre service
+          de lavage auto à la vapeur.
+        </p>
+      </section>
     </div>
   );
 };

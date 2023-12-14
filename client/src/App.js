@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Register from './components/register/Register';
@@ -6,8 +5,9 @@ import Login from './components/login/Login';
 import './App.css';
 import HomePage from './components/homepage/HomePage';
 import User from './components/user/User';
-import Admin from './components/admin/Admin';
-import TableUser from './components/admin/TableUser/TableUser';
+import AdminDashboard from './components/Admin/AdminDashboard';
+import AdminUser from './components/Admin/AdminUser'; 
+import ReservationPage from './components/reservation/ReservationPage';
 
 function App() {
   return (
@@ -16,9 +16,11 @@ function App() {
         <Route path='/' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='/home' element={<HomePage />} />
-        <Route path='/admin' element={<Admin />} />
         <Route path='/user' element={<User />} />
-        <Route path="/tableau_user" element={<TableUser/>}/>      </Routes>
+        <Route path='/admin' element={<AdminUser />} /> 
+        <Route path='/admin/dashboard' element={<AdminDashboard />} />
+        <Route path='/reservation' element={<ReservationPage />} />
+      </Routes>
     </div>
   );
 }

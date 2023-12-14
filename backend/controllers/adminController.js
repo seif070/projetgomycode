@@ -1,59 +1,18 @@
-
-const AdminDashboardData = require('../models/AdminDashboardData'); 
-const User = require('../models/User');
-const Order = require('../models/Order');
-const Product = require('../models/Product');
-
-exports.dashboard = async (req, res) => {
+const getAdminStatistics = async (req, res) => {
   try {
-    const userCount = await getUserCount();
-    const orderCount = await getOrderCount();
-    const productCount = await getProductCount();
+    const totalUsers = await User.countDocuments();
+    const totalOrders = await Order.countDocuments();
+    const revenue = await Order.aggregate([{ $group: { _id: null, total: { $sum: '$amount' } } }]);
 
-
-
-    res.render('admin/dashboard', { userCount, orderCount, productCount });
+    res.json({
+      totalUsers,
+      totalOrders,
+      revenue: revenue.length > 0 ? revenue[0].total : 0,
+    });
   } catch (error) {
-    console.error('Error fetching dashboard data:', error);
+    console.error('Error fetching admin statistics:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
 
-async function getUserCount() {
-
-    try {
-        const userCount = await User.countDocuments();
-        return userCount;
-      } catch (error) {
-        console.error('Error fetching user count:', error);
-        throw error;
-      }
-    }
-
-
-async function getOrderCount() {
-    try {
-        const orderCount = await Order.countDocuments();
-        return orderCount;
-      } catch (error) {
-        console.error('Error fetching order count:', error);
-        
-        
-    throw error;
-      }
-    }
-    
-
-
-async function getProductCount() {
-
-    try {
-        const productCount = await Product.countDocuments();
-        return productCount;
-      } catch (error) {
-        console.error('Error fetching product count:', error);
-        throw error;
-      }
-    }
-    
-
+module.exports = { getAdminStatistics };
