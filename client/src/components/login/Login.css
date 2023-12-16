@@ -1,50 +1,65 @@
-
 body {
-  background-color: #1f1f1f; /* Couleur de fond sombre */
-  color: #fff; /* Couleur du texte en mode sombre */
-  font-family: 'Arial', sans-serif;
+  background-image: url('./1019296-plusieurs-tetes-fournies-avec-nettoyeur.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form_main {
-  background-color: #333; /* Fond du formulaire en mode sombre */
-  color: #fff; /* Couleur du texte du formulaire en mode sombre */
-  padding: 20px;
+  background: #ffffff;
+  padding: 25px;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.inputContainer {
+  position: relative;
+  margin-bottom: 20px;
 }
 
 .inputIcon {
-  fill: #ccc; /* Couleur de l'icône */
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
 }
 
 .inputField {
-  background-color: #444; /* Fond du champ de saisie en mode sombre */
-  color: #fff; /* Couleur du texte du champ de saisie en mode sombre */
-  border: 1px solid #555;
-  padding: 12px;
-  margin-bottom: 20px;
-  border-radius: 8px;
   width: 100%;
+  padding: 10px 35px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 #button {
-  background-color: #ff4081; /* Couleur du bouton */
-  color: #fff; /* Couleur du texte du bouton en mode sombre */
-  padding: 15px;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  background: #007bff;
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
 }
 
 .signupContainer {
-  margin-top: 20px;
   text-align: center;
 }
 
-#button:hover {
-  background-color: #d81b60; /* Couleur du bouton au survol */
+.signupContainer p {
+  margin: 10px 0;
+  color: #555;
 }
 
-/* Ajoutez d'autres styles créatifs selon vos besoins */
+.signupContainer a {
+  color: #28a745;
+  text-decoration: none;
+  font-weight: bold;
+}
