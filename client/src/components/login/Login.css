@@ -1,51 +1,41 @@
-body {
-  background-image: url('./1019296-plusieurs-tetes-fournies-avec-nettoyeur.jpg');
+.login-container {
+  background-image: url('./login\ image.jpg'); 
   background-size: cover;
   background-position: center;
-  height: 100vh;
-  margin: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
-.form_main {
-  background: #ffffff;
-  padding: 25px;
+.login-form {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #333;
 }
 
 .inputContainer {
-  position: relative;
   margin-bottom: 20px;
-}
-
-.inputIcon {
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
 }
 
 .inputField {
   width: 100%;
-  padding: 10px 35px;
-  box-sizing: border-box;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 8px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  border-radius: 4px;
 }
 
-#button {
+#login-button {
   width: 100%;
   padding: 10px;
-  box-sizing: border-box;
-  background: #007bff;
+  background-color: #4caf50;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -53,13 +43,7 @@ body {
   text-align: center;
 }
 
-.signupContainer p {
-  margin: 10px 0;
-  color: #555;
-}
-
-.signupContainer a {
-  color: #28a745;
+.signup-link {
+  color: #007bff;
   text-decoration: none;
-  font-weight: bold;
 }

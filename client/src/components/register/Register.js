@@ -22,20 +22,11 @@ const Register = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      <form className="form_main">
-        <p className="heading">Register</p>
+    <div className="register-container">
+      <form className="register-form">
+        <p className="register-heading">Register</p>
 
         <div className="inputContainer">
-          <svg
-            viewBox="0 0 16 16"
-            fill="#2e2e2e"
-            height={16}
-            width={16}
-            xmlns="http://www.w3.org/2000/svg"
-            className="inputIcon"
-          >
-          </svg>
           <input
             placeholder="name"
             id="name"
@@ -47,15 +38,6 @@ const Register = () => {
         </div>
 
         <div className="inputContainer">
-          <svg
-            viewBox="0 0 16 16"
-            fill="#2e2e2e"
-            height={16}
-            width={16}
-            xmlns="http://www.w3.org/2000/svg"
-            className="inputIcon"
-          >
-          </svg>
           <input
             placeholder="lastname"
             id="lastname"
@@ -67,15 +49,6 @@ const Register = () => {
         </div>
 
         <div className="inputContainer">
-          <svg
-            viewBox="0 0 16 16"
-            fill="#2e2e2e"
-            height={16}
-            width={16}
-            xmlns="http://www.w3.org/2000/svg"
-            className="inputIcon"
-          >
-          </svg>
           <input
             placeholder="email"
             id="email"
@@ -87,15 +60,6 @@ const Register = () => {
         </div>
 
         <div className="inputContainer">
-          <svg
-            viewBox="0 0 16 16"
-            fill="#2e2e2e"
-            height={16}
-            width={16}
-            xmlns="http://www.w3.org/2000/svg"
-            className="inputIcon"
-          >
-          </svg>
           <input
             placeholder="Password"
             id="password"
@@ -122,13 +86,13 @@ const Register = () => {
           />
         </div>
 
-        <button id="button" type="button" onClick={handleRegister}>
+        <button id="register-button" type="button" onClick={handleRegister}>
           Submit
         </button>
 
         <div className="signupContainer">
           <p>Don't have an account?</p>
-          <a href="/login">Login</a>
+          <a href="/login" className="signup-link">Login</a>
         </div>
       </form>
     </div>

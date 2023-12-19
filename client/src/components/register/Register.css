@@ -1,64 +1,57 @@
-body {
-  background-image: url('./Pourquoi-faire-une-formation-pour-ouvrir-une-entreprise-de-nettoyage-vapeur.webp');
+.register-container {
+  background-image: url('./registervap.jpg');
   background-size: cover;
   background-position: center;
-  height: 100vh;
-  margin: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
-.form_main {
-  background: #ffffff;
-  padding: 25px;
+.register-form {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #333;
+}
+
+.register-heading {
+  text-align: center;
+  color: #333;
 }
 
 .inputContainer {
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.inputIcon {
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
+  margin-bottom: 10px;
 }
 
 .inputField {
   width: 100%;
-  padding: 10px 35px;
-  box-sizing: border-box;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-top: 5px;
-  margin-bottom: 10px;
 }
 
-#button {
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-  background: #28a745;
+#register-button {
+  background-color: #007bff;
   color: #fff;
+  cursor: pointer;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+#register-button:hover {
+  background-color: #0056b3;
 }
 
 .signupContainer {
   text-align: center;
 }
 
-.signupContainer p {
-  margin: 10px 0;
-  color: #555;
-}
-
-.signupContainer a {
+.signup-link {
   color: #007bff;
   text-decoration: none;
   font-weight: bold;

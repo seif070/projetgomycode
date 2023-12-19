@@ -7,6 +7,9 @@ const userRoutes = require('./routes/userRoutes');
 const servicesRouter=require('./routes/servicesRoutes');
 const authRouter = require('./routes/authuser');
 const router = require('./routes/servicesRoutes');
+const reservationRoutes = require('./routes/reservationRoutes');
+
+
 require('dotenv').config();
 
 const app = express();
@@ -21,7 +24,6 @@ app.use(cors());
 // Middleware pour parser le corps des requêtes en JSON
 app.use(express.json());
 
-// Middleware de log des requêtes
 app.use((req, res, next) => {
   console.log(`[${new Date().toLocaleString()}] ${req.method} ${req.url}`);
   next();
@@ -33,6 +35,8 @@ app.use('/orders', orderRoutes);
 app.use('/users', userRoutes); 
 app.use('/auth', authRouter); 
 app.use('/services',router);
+app.use('/reservation', reservationRoutes);
+
 
 // Middleware pour capturer les erreurs non traitées
 app.use((err, req, res, next) => {

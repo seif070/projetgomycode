@@ -1,58 +1,57 @@
-
-body {
-  background-image: url('./image.webp');
+.reservation-container {
+  background-image: url('./reservation\ image.jpg');
   background-size: cover;
   background-position: center;
+  height: 100vh;
   margin: 0;
-  font-family: 'Arial', sans-serif; 
-}
-
-.background-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
-
-.reservation-content {
-  background-color: rgba(255, 255, 255, 0.8); /* Arrière-plan semi-transparent */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-h2 {
-  text-align: center;
-  color: #333;
-}
-
-form {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
-  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 }
 
-label {
-  margin-top: 10px;
+.form-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
 }
 
-input,
-select,
-button {
-  margin-top: 5px;
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-container input,
+.form-container select {
+  width: 100%;
   padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-button {
+.form-container button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
   background-color: #007bff;
   color: #fff;
-  cursor: pointer;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.form-container button:hover {
   background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px;
 }

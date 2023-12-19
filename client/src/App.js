@@ -1,4 +1,6 @@
 import React from 'react';
+import Navbar from './components/navbar/Navbar';
+
 import { Routes, Route } from 'react-router-dom';
 import Register from './components/register/Register';
 import Login from './components/login/Login';
@@ -12,6 +14,8 @@ import ReservationPage from './components/reservation/ReservationPage';
 function App() {
   return (
     <div className='App'>
+            <Navbar />
+
       <Routes>
         <Route path='/' element={<Register />} />
         <Route path='/login' element={<Login />} />
@@ -20,6 +24,7 @@ function App() {
         <Route path='/admin' element={<AdminUser />} /> 
         <Route path='/admin/dashboard' element={<AdminDashboard />} />
         <Route path='/reservation' element={<ReservationPage />} />
+
       </Routes>
     </div>
   );

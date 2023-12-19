@@ -1,38 +1,91 @@
-
-body {
-  font-family: 'Arial', sans-serif; /* Style de police */
+.homepage-container {
+  background-image: url('./imagehompe.webp');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.section-welcome,
+.section-how-it-works,
+.section-advantages,
+.section-book-now {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.section-welcome h2,
+.section-how-it-works h2,
+.section-advantages h2,
+.section-book-now h2 {
+  color: #333;
+  text-align: center;
+}
+
+.section-welcome p,
+.section-how-it-works p,
+.section-advantages ul,
+.section-book-now p {
+  color: #555;
+}
+
+.section-advantages ul {
+  list-style: none;
   padding: 0;
 }
 
-.homepage {
-  background-image: url('./processus-nettoyage-vapeur-interieur-poignee-porte-voiture-apres-lavage-mousse-au-detergent-brosse_255847-7953.avif'); /* Remplacez par le chemin de votre image */
-  background-size: cover; /* Ajuste la taille de l'image pour couvrir la totalité de l'élément */
-  background-position: center; /* Centre l'image */
-  background-repeat: no-repeat; /* Évite la répétition de l'image */
-  color: #fff; /* Couleur du texte */
+.section-advantages li {
+  margin: 5px 0;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+.section-book-now a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-info {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.contact-info p {
+  font-size: 18px;
+  color: #333;
+}
+
+.section-welcome,
+.section-how-it-works,
+.section-advantages,
+.section-book-now,
+.contact-info {
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.header {
-  background-color: rgba(51, 51, 51, 0.8); 
-  color: #fff;
-  padding: 10px;
+.section-welcome h2,
+.section-how-it-works h2,
+.section-advantages h2,
+.section-book-now h2 {
+  color: #333;
   text-align: center;
 }
 
-.content {
-  margin: 20px 0;
-}
-
-.footer {
-  background-color: rgba(51, 51, 51, 0.8);
-  color: #fff;
-  padding: 10px;
-  text-align: center;
+.section-welcome p,
+.section-how-it-works p,
+.section-advantages ul,
+.section-book-now p,
+.contact-info p {
+  color: #555;
 }
