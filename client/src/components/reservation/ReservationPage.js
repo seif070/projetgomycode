@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../navbar/Navbar';
 import axios from 'axios';
 import './ReservationPage.css';
-
-
 
 const ReservationPage = () => {
   const [nom, setNom] = useState('');
@@ -16,6 +14,20 @@ const ReservationPage = () => {
     telephone: true,
     typeService: true,
   });
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get('http://localhost:5002/api/services');
+        setServices(response.data);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des services :', error);
+      }
+    };
+
+    fetchServices();
+  }, []); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +35,6 @@ const ReservationPage = () => {
     if (isFormValid()) {
       try {
         await axios.post('http://localhost:5002/api/reservations', { nom, email, telephone, typeService });
-
         console.log('Réservation réussie !');
       } catch (error) {
         console.error('Erreur lors de la réservation :', error);
@@ -84,48 +95,7 @@ const ReservationPage = () => {
       <Navbar />
       <h2>Réservez un Lavage Auto</h2>
       <form className="form-container" onSubmit={handleSubmit}>
-        <div className="form-field">
-          <label htmlFor="nom">Nom:</label>
-          <input
-            type="text"
-            id="nom"
-            name="nom"
-            value={nom}
-            onChange={handleInputChange}
-            className={validation.nom ? 'valid-input' : 'invalid-input'}
-            required
-          />
-          {!validation.nom && <p className="error-message">Le nom est requis.</p>}
-        </div>
-
-        <div className="form-field">
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={handleInputChange}
-            className={validation.email ? 'valid-input' : 'invalid-input'}
-            required
-          />
-          {!validation.email && <p className="error-message">Entrez une adresse e-mail valide.</p>}
-        </div>
-
-        <div className="form-field">
-          <label htmlFor="telephone">Téléphone:</label>
-          <input
-            type="tel"
-            id="telephone"
-            name="telephone"
-            value={telephone}
-            onChange={handleInputChange}
-            className={validation.telephone ? 'valid-input' : 'invalid-input'}
-            required
-          />
-          {!validation.telephone && <p className="error-message">Entrez un numéro de téléphone valide.</p>}
-        </div>
-
+        
         <div className="form-field">
           <label htmlFor="typeService">Type de Service:</label>
           <select
@@ -137,8 +107,11 @@ const ReservationPage = () => {
             required
           >
             <option value="">Sélectionnez un service</option>
-            <option value="nettoyage">Nettoyage Standard</option>
-            <option value="lustrage">Lustrage Premium</option>
+            {services.map((service) => (
+              <option key={service._id} value={service.name}>
+                {service.name}
+              </option>
+            ))}
           </select>
           {!validation.typeService && <p className="error-message">Le type de service est requis.</p>}
         </div>

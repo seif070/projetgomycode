@@ -9,6 +9,7 @@ import User from './components/user/User';
 import AdminDashboard from './components/Admin/AdminDashboard';
 import AdminUser from './components/Admin/AdminUser';
 import ReservationPage from './components/reservation/ReservationPage';
+import ServicesPage from './components/service/ServicesPage';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
         <Route path='/admin' element={<AdminUser />} />
         <Route path='/admin/dashboard' element={<AdminDashboard />} />
         <Route path='/reservation' element={<ReservationPage />} />
+        <Route path='/services' element={<ServicesPage />} />
+
       </Routes>
     </div>
   );

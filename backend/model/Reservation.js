@@ -1,13 +1,26 @@
+
 const mongoose = require('mongoose');
 
 const reservationSchema = new mongoose.Schema({
-  nom: String,
-  email: String,
-  telephone: String,
-  typeService: String,
-  confirmed: {
-    type: Boolean,
-    default: false,
+  nom: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  telephone: {
+    type: String,
+    required: true,
+  },
+  typeService: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
   },
 });
 
