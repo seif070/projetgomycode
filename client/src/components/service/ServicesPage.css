@@ -1,5 +1,5 @@
-.homepage-container {
-  background-image: url('./imagehompe.webp'); 
+.services-container {
+  background-image: url('./serviceimage.jpg'); 
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -11,38 +11,19 @@
   color: #fff;
 }
 
-.section {
+.service-card {
   background-color: rgba(255, 255, 255, 0.8);
   padding: 20px;
   margin: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.section h2 {
-  color: #333;
   text-align: center;
 }
 
-.section p {
+.service-card h3 {
+  color: #333;
+}
+
+.service-card p {
   color: #555;
-}
-
-.section ul {
-  list-style: none;
-  padding: 0;
-}
-
-.section li {
-  margin: 5px 0;
-}
-
-.contact-info {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.contact-info p {
-  font-size: 18px;
-  color: #333;
 }

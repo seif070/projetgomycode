@@ -1,9 +1,14 @@
-
 const mongoose = require('mongoose');
 
 const reservationSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  date: { type: Date, required: true },
+  nom: String,
+  email: String,
+  telephone: String,
+  typeService: String,
+  confirmed: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const Reservation = mongoose.model('Reservation', reservationSchema);

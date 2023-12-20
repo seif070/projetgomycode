@@ -52,45 +52,57 @@ const HomePage = () => {
         <Login />
       )}
 
-      <section className="section-welcome">
-        <h2>Lavage Auto à la Vapeur</h2>
-        <p>
-          Offrez à votre voiture le traitement qu'elle mérite avec notre service de lavage auto à la vapeur.
-          Respectueux de l'environnement, efficace et sans produits chimiques agressifs.
-        </p>
-      </section>
+      <div className="card-container">
+        <div className="card">
+          <section className="section-welcome">
+            <h2>Lavage Auto à la Vapeur</h2>
+            <p>
+              Offrez à votre voiture le traitement qu'elle mérite avec notre service de lavage auto à la vapeur.
+              Respectueux de l'environnement, efficace et sans produits chimiques agressifs.
+            </p>
+          </section>
+        </div>
 
-      <section className="section-how-it-works">
-        <h2>Comment Ça Marche</h2>
-        <p>
-          Notre équipe qualifiée utilise la puissance de la vapeur pour nettoyer votre voiture de manière
-          approfondie, en éliminant la saleté, les taches et les bactéries.
-        </p>
-      </section>
+        <div className="card">
+          <section className="section-how-it-works">
+            <h2>Comment Ça Marche</h2>
+            <p>
+              Notre équipe qualifiée utilise la puissance de la vapeur pour nettoyer votre voiture de manière
+              approfondie, en éliminant la saleté, les taches et les bactéries.
+            </p>
+          </section>
+        </div>
 
-      <section className="section-advantages">
-        <h2>Avantages du Lavage à la Vapeur</h2>
-        <ul>
-          <li>Écologique</li>
-          <li>Économique en eau</li>
-          <li>Nettoyage en profondeur</li>
-          <li>Protection de la peinture</li>
-        </ul>
-      </section>
+        <div className="card">
+          <section className="section-advantages">
+            <h2>Avantages du Lavage à la Vapeur</h2>
+            <ul>
+              <li>Écologique</li>
+              <li>Économique en eau</li>
+              <li>Nettoyage en profondeur</li>
+              <li>Protection de la peinture</li>
+            </ul>
+          </section>
+        </div>
 
-      <section className="section-book-now">
-        <h2>Réservez un Lavage</h2>
-        <p>
-          Prêt à donner à votre voiture un nouveau look?{' '}
-          <Link to='/reservation'>Réservez maintenant</Link> et profitez de notre service
-          de lavage auto à la vapeur.
-        </p>
-      </section>
+        <div className="card">
+          <section className="section-book-now">
+            <h2>Réservez un Lavage</h2>
+            <p>
+              Prêt à donner à votre voiture un nouveau look?{' '}
+              <Link to="/reservation">Réservez maintenant</Link> et profitez de notre service
+              de lavage auto à la vapeur.
+            </p>
+          </section>
+        </div>
 
-      <section className="contact-info">
-        <p>Phone: 27363449</p>
-        <p>Address: Munich</p>
-      </section>
+        <div className="card">
+          <section className="contact-info">
+            <p>Phone: 27363449</p>
+            <p>Address: Munich</p>
+          </section>
+        </div>
+      </div>
     </div>
   );
 };

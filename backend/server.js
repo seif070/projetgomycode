@@ -4,24 +4,20 @@ const connectDB = require('./config/db');
 const productRoutes = require('./routes/productRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const userRoutes = require('./routes/userRoutes');
-const servicesRouter=require('./routes/servicesRoutes');
 const authRouter = require('./routes/authuser');
-const router = require('./routes/servicesRoutes');
+const servicesRoutes = require('./routes/servicesRoutes');
+const serviceUserRoutes = require('./routes/serviceUserRoutes'); 
 const reservationRoutes = require('./routes/reservationRoutes');
-
 
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5002;
 
-// Connexion à la base de données
 connectDB();
 
-// Middleware pour gérer les requêtes cross-origin
 app.use(cors());
 
-// Middleware pour parser le corps des requêtes en JSON
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -32,11 +28,11 @@ app.use((req, res, next) => {
 // Routes
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
-app.use('/users', userRoutes); 
-app.use('/auth', authRouter); 
-app.use('/services',router);
+app.use('/users', userRoutes);
+app.use('/auth', authRouter);
+app.use('/services', servicesRoutes);
+app.use('/service-users', serviceUserRoutes); 
 app.use('/reservation', reservationRoutes);
-
 
 // Middleware pour capturer les erreurs non traitées
 app.use((err, req, res, next) => {
